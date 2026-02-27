@@ -8,9 +8,9 @@
 |--------|-------|
 | Active Phase | P0 |
 | Total Cards | 9 |
-| Shipped | 0 |
+| Shipped | 2 |
 | Building | 0 |
-| Queued | 9 |
+| Queued | 7 |
 | Started | 2026-02-27 |
 
 ### Cards by Phase
@@ -29,7 +29,7 @@
 ### Shipped
 | Card | Title | Completed | Duration |
 |------|-------|-----------|----------|
-| — | — | — | — |
+| GOL-f001 | F001: Quick Capture | 2026-02-27 18:36 | 11m || GOL-f000 | F000: Application Shell Layout | 2026-02-27 18:36 | 11m |
 
 ### Key Decisions
 *Decisions will be documented as the build progresses.*

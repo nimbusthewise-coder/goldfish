@@ -1,0 +1,289 @@
+/**
+ * Application Shell Layout Styles
+ * 
+ * Responsive layout system using CSS Grid and custom properties.
+ * Mobile-first approach with breakpoints for tablet and desktop.
+ */
+
+@layer components {
+  /* App Shell Container */
+  .app-shell {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 1fr;
+    min-height: 100vh;
+    min-height: 100dvh; /* Dynamic viewport height for mobile */
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Header */
+  .app-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: var(--color-background);
+    border-bottom: 1px solid var(--color-border);
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+
+  .app-header.hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  .app-header-content {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    max-width: 1920px;
+    margin: 0 auto;
+  }
+
+  /* Search Section */
+  .app-header-search {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0; /* Allow flex items to shrink */
+  }
+
+  .app-header-search input {
+    flex: 1;
+    padding: 0.5rem 0.75rem;
+    background: var(--color-muted);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+  }
+
+  .app-header-search input:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    background: var(--color-background);
+  }
+
+  /* User Section */
+  .app-header-user {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  /* Quick Capture */
+  .quick-capture {
+    position: sticky;
+    top: 4rem;
+    z-index: 30;
+    background: var(--color-background);
+    border-bottom: 1px solid var(--color-border);
+    transition: all 0.3s ease;
+  }
+
+  .quick-capture.mobile-fixed {
+    position: fixed;
+    bottom: 0;
+    top: auto;
+    left: 0;
+    right: 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: none;
+    box-shadow: 0 -4px 6px -1px rgb(0 0 0 / 0.1);
+  }
+
+  .quick-capture-content {
+    padding: 1rem;
+    max-width: 1920px;
+    margin: 0 auto;
+  }
+
+  .quick-capture-input {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    background: var(--color-muted);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    font-size: 1rem;
+    resize: vertical;
+    min-height: 3rem;
+    transition: all 0.2s ease;
+  }
+
+  .quick-capture-input:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    background: var(--color-background);
+    box-shadow: 0 0 0 3px var(--color-accent) / 0.1;
+  }
+
+  .quick-capture-input.expanded {
+    min-height: 6rem;
+  }
+
+  .quick-capture-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+  }
+
+  /* Main Content Area */
+  .app-main {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Constellation View */
+  .constellation-view {
+    flex: 1;
+    position: relative;
+    overflow: auto;
+    background: var(--color-background);
+  }
+
+  .constellation-view-content {
+    padding: 2rem 1rem;
+    max-width: 1920px;
+    margin: 0 auto;
+    min-height: 100%;
+  }
+
+  .constellation-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    text-align: center;
+    color: var(--color-muted-foreground);
+  }
+
+  /* Tab Navigation */
+  .tab-navigation {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    background: var(--color-background);
+    border-top: 1px solid var(--color-border);
+    box-shadow: 0 -2px 4px rgb(0 0 0 / 0.05);
+  }
+
+  .tab-navigation-content {
+    display: flex;
+    justify-content: space-around;
+    padding: 0.5rem;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .tab-navigation-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem 1rem;
+    min-width: 4rem;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-md);
+    color: var(--color-muted-foreground);
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .tab-navigation-item:hover {
+    background: var(--color-muted);
+    color: var(--color-foreground);
+  }
+
+  .tab-navigation-item.active {
+    color: var(--color-accent);
+    background: var(--color-accent) / 0.1;
+  }
+
+  .tab-navigation-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  /* Desktop Layout */
+  @media (min-width: 768px) {
+    .app-header-content {
+      padding: 1rem 1.5rem;
+      gap: 2rem;
+    }
+
+    .quick-capture.mobile-fixed {
+      position: sticky;
+      top: 4rem;
+      bottom: auto;
+      box-shadow: none;
+      border-top: none;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .quick-capture-content {
+      padding: 1.5rem;
+    }
+
+    .constellation-view-content {
+      padding: 3rem 2rem;
+    }
+
+    /* Desktop tab navigation - horizontal at top */
+    .tab-navigation {
+      position: sticky;
+      top: 4rem;
+      bottom: auto;
+      box-shadow: none;
+      border-bottom: 1px solid var(--color-border);
+      border-top: none;
+    }
+
+    .tab-navigation-content {
+      justify-content: flex-start;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      max-width: 1920px;
+    }
+
+    .tab-navigation-item {
+      flex-direction: row;
+      gap: 0.5rem;
+      font-size: 0.875rem;
+    }
+  }
+
+  /* Large Desktop */
+  @media (min-width: 1024px) {
+    .constellation-view-content {
+      padding: 4rem 3rem;
+    }
+  }
+
+  /* Accessibility */
+  .app-header-search input:focus-visible,
+  .quick-capture-input:focus-visible,
+  .tab-navigation-item:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  /* Smooth transitions for theme changes */
+  .app-shell,
+  .app-header,
+  .quick-capture,
+  .constellation-view,
+  .tab-navigation {
+    transition-property: background-color, border-color, color;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+  }
+}
