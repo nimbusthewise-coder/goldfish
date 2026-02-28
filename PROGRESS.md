@@ -8,9 +8,9 @@
 |--------|-------|
 | Active Phase | P0 |
 | Total Cards | 9 |
-| Shipped | 3 |
+| Shipped | 5 |
 | Building | 0 |
-| Queued | 6 |
+| Queued | 4 |
 | Started | 2026-02-27 |
 
 ### Cards by Phase
@@ -29,7 +29,7 @@
 ### Shipped
 | Card | Title | Completed | Duration |
 |------|-------|-----------|----------|
-| GOL-f003 | F003: Living Constellation View | 2026-02-28 01:12 | 5m || GOL-f001 | F001: Quick Capture | 2026-02-27 18:36 | 11m || GOL-f000 | F000: Application Shell Layout | 2026-02-27 18:36 | 11m |
+| GOL-f005 | F005: Curiosity Transmission | 2026-02-28 02:47 | 9m || GOL-f006 | F006: Connection Discovery | 2026-02-28 02:14 | 9m || GOL-f003 | F003: Living Constellation View | 2026-02-28 01:12 | 5m || GOL-f001 | F001: Quick Capture | 2026-02-27 18:36 | 11m || GOL-f000 | F000: Application Shell Layout | 2026-02-27 18:36 | 11m |
 
 ### Key Decisions
 *Decisions will be documented as the build progresses.*
