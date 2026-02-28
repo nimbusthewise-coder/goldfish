@@ -8,9 +8,49 @@
 'use client';
 
 import { useLayoutStore } from '@/hooks/useLayout';
+import { useThoughtsStore } from '@/stores/thoughts-store';
 
 export function ConstellationView() {
   const viewMode = useLayoutStore((state) => state.viewMode);
+  const thoughts = useThoughtsStore((state) => state.thoughts);
+  const deleteThought = useThoughtsStore((state) => state.deleteThought);
+
+  // Show thoughts if we have any
+  if (thoughts.length > 0) {
+    return (
+      <div className="constellation-view">
+        <div className="constellation-view-content">
+          <div className="thoughts-list">
+            {thoughts.map((thought) => (
+              <div 
+                key={thought.id} 
+                className="thought-card"
+              >
+                <div className="thought-content">
+                  <span className="thought-type-badge">
+                    {thought.type === 'voice' ? '🎤' : '💭'}
+                  </span>
+                  <p>{thought.content}</p>
+                </div>
+                <div className="thought-meta">
+                  <span className="thought-time">
+                    {new Date(thought.createdAt).toLocaleTimeString()}
+                  </span>
+                  <button
+                    onClick={() => deleteThought(thought.id)}
+                    className="thought-delete"
+                    aria-label="Delete thought"
+                  >
+                    ×
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="constellation-view">
