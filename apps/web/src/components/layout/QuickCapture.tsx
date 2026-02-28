@@ -44,10 +44,18 @@ export function QuickCapture() {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-    // Submit on Cmd/Ctrl + Enter
+    // Submit on Cmd/Ctrl + Enter (always)
     if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
       e.preventDefault();
       handleSubmit(e);
+      return;
+    }
+    
+    // Submit on plain Enter if text has no newlines (single-line quick capture)
+    if (e.key === 'Enter' && !e.shiftKey && !value.includes('\n')) {
+      e.preventDefault();
+      handleSubmit(e);
+      return;
     }
     
     // Escape to collapse
@@ -83,7 +91,7 @@ export function QuickCapture() {
           onChange={(e) => setValue(e.target.value)}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
-          placeholder="Capture a thought... (⌘+Enter to save)"
+          placeholder="Capture a thought... (Enter to save)"
           className={`quick-capture-input ${quickCaptureExpanded ? 'expanded' : ''}`}
           aria-label="Quick capture input"
           onKeyDown={handleKeyDown}
